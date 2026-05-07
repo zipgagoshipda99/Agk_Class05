@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Agk_Class05.sln"
+    "dotnet.defaultSolution": "Agk_Class05.slnx"
 }
