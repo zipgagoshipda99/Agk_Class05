@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 //using Microsoft.Unity.VisualStudio.Editor; 다른 image type 추가해서 주석 처리
 public class HealthManager : MonoBehaviour
 {
+    public static HealthManager healthManager;
     private int maxHearts = 3;
     [Header("하트 설정")]
     [SerializeField]private Image[] heartImages;
@@ -23,6 +25,7 @@ public class HealthManager : MonoBehaviour
     private void Start()
     {
         currentHearts = maxHearts;
+        UpdateHeartUI();
     }
     private void UpdateHeartUI()
     {
@@ -32,13 +35,9 @@ public class HealthManager : MonoBehaviour
             {
                 heartImages[i].sprite = fullHeart;
             }
-            else if(currentHearts < i)
+            else if(currentHearts <= i)
             {
                 heartImages[i].sprite = emptyHeart;
-            }
-            else
-            {
-                Debug.Log("somethings wrong line 41 health manager");
             }
         }
     }
@@ -48,6 +47,20 @@ public class HealthManager : MonoBehaviour
         yield return new WaitForSeconds(invincibleDuration);
         isInvincible = false;
     }
+    public void InstantDeath()
+    {
+        currentHearts = 0;
+        UpdateHeartUI();
+        RespawnManager.respawnManager.PlayerDied();
+        
+    }
+
+    public void ResetHearts()
+    {
+        currentHearts = maxHearts;
+        UpdateHeartUI();
+    }
+
     public void TakeDamage()
     {
         if (isInvincible)

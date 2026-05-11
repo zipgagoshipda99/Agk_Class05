@@ -74,18 +74,4 @@ public class PlayerController: MonoBehaviour
 
         }
     }
-
-
-
-
-
-    private void OnDrawGizmosSelected()
-    {
-        if (groundCheck == null) return; // 함수 끝내기
-        Gizmos.color = isGrounded ? Color.green : Color.red;
-
-        Gizmos.DrawWireSphere(groundCheck.position, groundcheckRadius);
-    }
-
-    // Update is called once per frame
 }
