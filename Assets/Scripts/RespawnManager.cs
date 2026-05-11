@@ -65,14 +65,9 @@ public class RespawnManager : MonoBehaviour
         hudScreen.SetActive(true);
         
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.GetComponent<HealthManager>().ResetHearts();
         isDead = false;
         
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }

@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeManager : MonoBehaviour
+public class SpikeController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D enteredCollider)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (enteredCollider.CompareTag("Player"))
+        {
+            Debug.Log("Player just hit a spike!");
+            enteredCollider.GetComponent<HealthManager>().TakeDamage();
+        }
         
     }
 }
