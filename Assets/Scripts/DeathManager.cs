@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DeathManager : MonoBehaviour
+{
+    
+    private void OnTriggerEnter2D(Collider2D enteredCollider)
+    {
+           Debug.Log("Entered: " + enteredCollider.name + " times at: " + Time.time);
+        if (enteredCollider.CompareTag("Player"))
+        {
+            Debug.Log("Player entered death zone!");
+            RespawnManager.respawnManager.PlayerDied();
+        }
+    }
+}
