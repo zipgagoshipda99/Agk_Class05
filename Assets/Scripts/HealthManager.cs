@@ -22,6 +22,11 @@ public class HealthManager : MonoBehaviour
     private bool isInvincible = false;
     private int currentHearts;
 
+    //private void Awake()
+    //{
+    //    healthManager = GetComponent<HealthManager>();
+    //}
+
     private void Start()
     {
         currentHearts = maxHearts;

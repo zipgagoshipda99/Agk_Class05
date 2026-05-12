@@ -7,12 +7,12 @@ public class DeathManager : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D enteredCollider)
     {
-           Debug.Log("Entered: " + enteredCollider.name + " times at: " + Time.time);
+         Debug.Log("Entered: " + enteredCollider.name);
         if (enteredCollider.CompareTag("Player"))
         {
             Debug.Log("Player entered death zone!");
-            //enteredCollider.GetComponent<HealthManager>().InstantDeath();
-            HealthManager.healthManager.InstantDeath();
+            enteredCollider.GetComponent<HealthManager>().InstantDeath();
+            //HealthManager.healthManager.InstantDeath();
         }
     }
 }
