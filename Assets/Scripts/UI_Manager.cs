@@ -35,11 +35,11 @@ public class UI_Manager : MonoBehaviour
         creditsPanel.SetActive(false);
     }
 
-    public void ChangeDeathText()
-    {
-        int i = Random.Range(0, d_textlist.Count);
-        deathText.text = d_textlist[i]; 
-    }
+    // public void ChangeDeathText()
+    // {
+    //     int i = Random.Range(0, d_textlist.Count);
+    //     deathText.text = d_textlist[i]; 
+    // }
     private void Start()
     {
         Player.SetActive(false);

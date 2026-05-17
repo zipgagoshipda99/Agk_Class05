@@ -37,16 +37,18 @@ public class RespawnManager : MonoBehaviour
     public void PlayerDied()
 
     {
-        if (isDead)
+        if (isDead == true)
         {
-            return;
+            return; //벌써 죽어있는 상태면(함수 실행 전) 함수 끝내기
         }
         isDead = true;
         deathScreen.SetActive(true);
+        player.SetActive(false);
         hudScreen.SetActive(false);
         player.GetComponent<PlayerController>().enabled = false;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<CapsuleCollider2D>().enabled = false;
+        
         StartCoroutine(RespawnAfterDelay());
 
     }
@@ -60,14 +62,23 @@ public class RespawnManager : MonoBehaviour
         player.transform.position = spawnPoint.position;
         player.GetComponent<PlayerController>().enabled = true;
         player.GetComponent<CapsuleCollider2D>().enabled = true;
-        
+        player.SetActive(true);
         deathScreen.SetActive(false);
         hudScreen.SetActive(true);
-        
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<HealthManager>().ResetHearts();
         isDead = false;
+        ResetAllMobs();
         
         
+        
+    }
+    private void ResetAllMobs()
+    {
+        MobController[] EverySingleMob = FindObjectsOfType<MobController>(true); //true 붙인 이유는 active  이 아닌 mob 오브젝트도 찾기 위해서.
+        foreach (MobController mob in EverySingleMob)
+        {
+            mob.ResetMobs();
+        }
     }
 }

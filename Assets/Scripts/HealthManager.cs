@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,14 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     public static HealthManager healthManager;
+    private void Awake()
+        {
+            if (healthManager == null)
+            {
+                healthManager = this;
+            }
+        }
+    public string deathCause = "";
     private int maxHearts = 3;
     [Header("하트 설정")]
     [SerializeField]private Image[] heartImages;
@@ -19,13 +28,10 @@ public class HealthManager : MonoBehaviour
     [Header("무적 설정")] //스파이크 닿은 후 무적 몇초 동안 할건지
 
     [SerializeField]private float invincibleDuration = 1.5f;
+    [Header("텍스트 변환")]
+    [SerializeField]private TextMeshProUGUI deathText;
     private bool isInvincible = false;
     private int currentHearts;
-
-    //private void Awake()
-    //{
-    //    healthManager = GetComponent<HealthManager>();
-    //}
 
     private void Start()
     {
@@ -56,6 +62,7 @@ public class HealthManager : MonoBehaviour
     {
         currentHearts = 0;
         UpdateHeartUI();
+        
         RespawnManager.respawnManager.PlayerDied();
         
     }
@@ -66,7 +73,7 @@ public class HealthManager : MonoBehaviour
         UpdateHeartUI();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(string deathCause)
     {
         if (isInvincible)
         {
@@ -78,6 +85,7 @@ public class HealthManager : MonoBehaviour
         if (currentHearts <= 0)
         {
             RespawnManager.respawnManager.PlayerDied();
+            deathText.text = deathCause;
             return; // playerdied메소드를 실행하고 이 메소드를 끝내는 부분. 만약 위에 if invincible 조건이 true면 2번째인 이 if조건은 실행 ㄴㄴ.
 
         }

@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class SpikeController : MonoBehaviour
 {
    
     //private bool diedbySpike = false;
-
-    private void OnTriggerEnter2D(Collider2D enteredCollider)
+    public void OnTriggerEnter2D(Collider2D enteredCollider)
     {
         if (enteredCollider.CompareTag("Player"))
         {
             Debug.Log($"{enteredCollider.name} just hit a spike!");
-            enteredCollider.GetComponent<HealthManager>().TakeDamage();
+            string diedbySpike = "ouch! you were killed by a spike..";
+            HealthManager.healthManager.TakeDamage(diedbySpike);
+            
+            
         }
         //if (enteredCollider.CompareTag("Player") && diedbySpike == true)
         //{
