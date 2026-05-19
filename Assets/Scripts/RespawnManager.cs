@@ -16,6 +16,7 @@ public class RespawnManager : MonoBehaviour
     [SerializeField] private GameObject hudScreen;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private GameObject[] CoinObjArray;
     
     [Header("설정")]
     [SerializeField] private float respawnDelay = 5f;
@@ -66,9 +67,12 @@ public class RespawnManager : MonoBehaviour
         deathScreen.SetActive(false);
         hudScreen.SetActive(true);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<HealthManager>().ResetHearts();
+        HealthManager.healthManager.ResetHearts();
         isDead = false;
+        
         ResetAllMobs();
+        ShowCoins();
+
         
         
         
@@ -79,6 +83,18 @@ public class RespawnManager : MonoBehaviour
         foreach (MobController mob in EverySingleMob)
         {
             mob.ResetMobs();
+        }
+    }
+    public void ShowCoins()
+    {
+        
+        foreach(GameObject coinObj  in CoinObjArray)
+        {
+            if(coinObj != null) //코인 오브젝트들이 실제로 메모리에 존재하는지 & 유니티 에디터에 존재하는지  (안정장치.... ㅇㅅㅇ)
+            {
+                coinObj.SetActive(true);
+            }
+            
         }
     }
 }

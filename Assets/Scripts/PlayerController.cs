@@ -64,7 +64,7 @@ public class PlayerController: MonoBehaviour
 
 
     }
-    private void FixedUpdate()
+    private void FixedUpdate() //일정한 시간(현실 시간) 무조건 똑같은 시간 간격으로 실행된다
     {
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
         if (jumpRequested)

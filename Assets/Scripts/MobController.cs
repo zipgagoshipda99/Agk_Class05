@@ -57,8 +57,7 @@ public class MobController : MonoBehaviour
         if (moveRight)
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-                                    //(양수 면 오른쪽으로 ,중력)
-                                    
+                                    //(양수 면 오른쪽으로 ,중력)         
             spriteRender.flipX = true;
             if(transform.position.x >= PatrolPointRight.position.x)
             {

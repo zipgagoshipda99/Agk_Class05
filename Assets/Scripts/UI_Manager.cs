@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 
 {
+    public static UI_Manager ui_Manager;
+
+    public void Awake()
+    {
+        if(ui_Manager == null)
+        {
+            ui_Manager = this;
+        }
+    }
+    [SerializeField]public CoinController coincontroller;
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject StartMenu;
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private TextMeshProUGUI deathText;
-    [SerializeField] private List<string>  d_textlist = new List<string>();
-
+    [SerializeField] private TextMeshProUGUI coinObtainText;
+    [SerializeField] private TextMeshProUGUI coinAmountText;
+    
+    
+    public static GameObject quitButton;
+    //[SerializeField] private List<string>  d_textlist = new List<string>();
     public void StartGame()
     {
         Player.SetActive(true);
@@ -33,6 +50,21 @@ public class UI_Manager : MonoBehaviour
     public void ExitCredits()
     {
         creditsPanel.SetActive(false);
+    }
+    public void coinObtain()
+    {
+        
+        coinObtainText.text = $"코인 +{coincontroller.coinobtainAmmount} 획득!";
+        coinAmountText.text = $"코인: +{coincontroller.coinAmmount}";
+        StartCoroutine(textDelay());
+        //coinObtainText.text = ""; <- 이러면 안됨 버그 함수 안에서 기달리는거지 함수를 불렀다고 기달리는 건 아님 ㅇㅇ 
+        //coinAmountText.text = "";
+    }
+
+    private IEnumerator textDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        coinObtainText.text = "";
     }
 
     // public void ChangeDeathText()
