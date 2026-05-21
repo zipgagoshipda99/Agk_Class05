@@ -447,7 +447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d990f3d84a0dae47a84ee86a01f2fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coincontroller: {fileID: 1087057488}
   Player: {fileID: 478153099}
   StartMenu: {fileID: 2004069280}
   infoPanel: {fileID: 1626482652}
@@ -4422,7 +4421,6 @@ GameObject:
   - component: {fileID: 1087057483}
   - component: {fileID: 1087057488}
   - component: {fileID: 1087057487}
-  - component: {fileID: 1087057486}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -4518,20 +4516,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087057486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087057482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5462fa29b1da5cb4e9c428adb522cabb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinAmmount: 0
-  coinobtainAmmount: 0
 --- !u!61 &1087057487
 BoxCollider2D:
   m_ObjectHideFlags: 0
